@@ -12,13 +12,13 @@
 void swap(int arr[], int item1, int item2, int order)
 
 {
-	int temp;
+	int tmp;
 
 	if (order == (arr[item1] > arr[item2]))
 	{
-		temp = arr[item1];
+		tmp = arr[item1];
 		arr[item1] = arr[item2];
-		arr[item2] = temp;
+		arr[item2] = tmp;
 	}
 }
 /**
@@ -32,15 +32,15 @@ void swap(int arr[], int item1, int item2, int order)
 void merge(int arr[], int low, int nelemnt, int order)
 
 {
-	int mid, i;
+	int middle, i;
 
 	if (nelemnt > 1)
 	{
-		mid = nelemnt / 2;
-		for (i = low; i < low + mid; i++)
-			swap(arr, i, i + mid, order);
-		merge(arr, low, mid, order);
-		merge(arr, low + mid, mid, order);
+		middle = nelemnt / 2;
+		for (i = low; i < low + middle; i++)
+			swap(arr, i, i + middle, order);
+		merge(arr, low, middle, order);
+		merge(arr, low + middle, middle, order);
 	}
 }
 /**
@@ -55,7 +55,7 @@ void merge(int arr[], int low, int nelemnt, int order)
 void bitonicsort(int arr[], int low, int nelemnt, int order, int size)
 
 {
-	int mid;
+	int middle;
 
 	if (nelemnt > 1)
 	{
@@ -69,9 +69,9 @@ void bitonicsort(int arr[], int low, int nelemnt, int order, int size)
 			printf("Merging [%i/%i] (DOWN):\n", nelemnt, size);
 			print_array(&arr[low], nelemnt);
 		}
-		mid = nelemnt / 2;
-		bitonicsort(arr, low, mid, 1, size);
-		bitonicsort(arr, low + mid, mid, 0, size);
+		middle = nelemnt / 2;
+		bitonicsort(arr, low, middle, 1, size);
+		bitonicsort(arr, low + middle, middle, 0, size);
 		merge(arr, low, nelemnt, order);
 		if (order <= 0)
 		{

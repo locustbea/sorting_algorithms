@@ -7,7 +7,7 @@ void insertion_sort_deck_value(deck_node_t **deck);
 void sort_deck(deck_node_t **deck);
 
 /**
- * _strcmp - Compares two strings.
+ * _strcmp - Comparing two strings.
  * @s1: The first string to be compared.
  * @s2: The second string to be compared.
  *
@@ -68,30 +68,30 @@ char get_value(deck_node_t *card)
 }
 
 /**
- * insertion_sort_deck_kind - Sort a deck of cards from spades to diamonds.
+ * insertion_sort_deck_kind - Sorts a deck of cards from spades to diamonds.
  * @deck: A pointer to the head of a deck_node_t doubly-linked list.
  */
 void insertion_sort_deck_kind(deck_node_t **deck)
 {
-	deck_node_t *iter, *insert, *tmp;
+	deck_node_t *iter, *i, *tmp;
 
 	for (iter = (*deck)->next; iter != NULL; iter = tmp)
 	{
 		tmp = iter->next;
-		insert = iter->prev;
-		while (insert != NULL && insert->card->kind > iter->card->kind)
+		i = iter->prev;
+		while (i != NULL && i->card->kind > iter->card->kind)
 		{
-			insert->next = iter->next;
+			i->next = iter->next;
 			if (iter->next != NULL)
-				iter->next->prev = insert;
-			iter->prev = insert->prev;
-			iter->next = insert;
-			if (insert->prev != NULL)
-				insert->prev->next = iter;
+				iter->next->prev = i;
+			iter->prev = i->prev;
+			iter->next = i;
+			if (i->prev != NULL)
+				i->prev->next = iter;
 			else
 				*deck = iter;
-			insert->prev = iter;
-			insert = iter->prev;
+			i->prev = iter;
+			i = iter->prev;
 		}
 	}
 }
@@ -103,27 +103,27 @@ void insertion_sort_deck_kind(deck_node_t **deck)
  */
 void insertion_sort_deck_value(deck_node_t **deck)
 {
-	deck_node_t *iter, *insert, *tmp;
+	deck_node_t *iter, *i, *tmp;
 
 	for (iter = (*deck)->next; iter != NULL; iter = tmp)
 	{
 		tmp = iter->next;
-		insert = iter->prev;
-		while (insert != NULL &&
-		       insert->card->kind == iter->card->kind &&
-		       get_value(insert) > get_value(iter))
+		i = iter->prev;
+		while (i != NULL &&
+		       i->card->kind == iter->card->kind &&
+		       get_value(i) > get_value(iter))
 		{
-			insert->next = iter->next;
+			i->next = iter->next;
 			if (iter->next != NULL)
-				iter->next->prev = insert;
-			iter->prev = insert->prev;
-			iter->next = insert;
-			if (insert->prev != NULL)
-				insert->prev->next = iter;
+				iter->next->prev = i;
+			iter->prev = i->prev;
+			iter->next = i;
+			if (i->prev != NULL)
+				i->prev->next = iter;
 			else
 				*deck = iter;
-			insert->prev = iter;
-			insert = iter->prev;
+			i->prev = iter;
+			i = iter->prev;
 		}
 	}
 }

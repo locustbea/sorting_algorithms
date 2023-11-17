@@ -7,15 +7,15 @@
  * @array: array of data to be sorted
  * @buff: malloc buffer
  * @size: size of data
- * @lsd: Less significant digit
+ * @lsd: the Less significant digit
  *
- * Return: No Return
+ * Return: Nothing
  */
 
 void csort2(int *array, int **buff, int size, int lsd)
 
 {
-	int i, j, csize = 10, num;
+	int i, j, custom_size = 10, num;
 	int carr[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	int carr2[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -30,7 +30,7 @@ void csort2(int *array, int **buff, int size, int lsd)
 		carr[num] += 1;
 	}
 
-	for (i = 0, j = 0; i < csize; i++)
+	for (i = 0, j = 0; i < custom_size; i++)
 	{
 		while (carr[i] > 0)
 		{
@@ -47,16 +47,16 @@ void csort2(int *array, int **buff, int size, int lsd)
  *
  * @array: array of data to be sorted
  * @size: size of data
- * @lsd: Less significant digit
+ * @lsd: the Less significant digit
  *
- * Return: No Return
+ * Return: Nothing
  */
 
 void csort(int *array, int size, int lsd)
 
 {
 	int carr[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	int i, j, num, csize = 10, **buff;
+	int i, j, num, custom_size = 10, **buff;
 
 	for (i = 0; i < size; i++)
 	{
@@ -75,7 +75,7 @@ void csort(int *array, int size, int lsd)
 	if (!buff)
 		return;
 
-	for (i = 0; i < csize; i++)
+	for (i = 0; i < custom_size; i++)
 		if (carr[i] != 0)
 			buff[i] = malloc(sizeof(int) * carr[i]);
 
@@ -84,7 +84,7 @@ void csort(int *array, int size, int lsd)
 
 	csort(array, size, lsd + 1);
 
-	for (i = 0; i < csize; i++)
+	for (i = 0; i < custom_size; i++)
 		if (carr[i] > 0)
 			free(buff[i]);
 	free(buff);
@@ -93,10 +93,10 @@ void csort(int *array, int size, int lsd)
  * radix_sort - sorts an array of integers in ascending order using the Radix
  * sort algorithm
  *
- * @array: array of data to be sorted
+ * @array: The array of data to be sorted
  * @size: size of data
  *
- * Return: No Return
+ * Return: Nothing
  */
 void radix_sort(int *array, size_t size)
 {

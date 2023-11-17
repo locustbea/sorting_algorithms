@@ -3,10 +3,10 @@
 /**
  * selection_sort - sorts an array of integers
  *
- * Description: sorts an array of integers in ascending order using the
+ * Description: sorting an array of integers in ascending order using
  * selection sort algorithm
  *
- * @array: array of integer to sort
+ * @array: The array of integer to sort
  * @size: size of the array of integer
  *
  * Return: nothing
@@ -14,7 +14,7 @@
 void selection_sort(int *array, size_t size)
 {
 	size_t i, j, k, pos;
-	int temp;
+	int tmp_data;
 
 	if (array == NULL)
 		return;
@@ -29,19 +29,19 @@ void selection_sort(int *array, size_t size)
 		return;
 	for (i = 0; i < size - 1; i++)
 	{
-		temp = array[i];
+		tmp_data = array[i];
 		for (j = i; j < size; j++)
 		{
-			if (temp > array[j])
+			if (tmp_data > array[j])
 			{
-				temp = array[j];
+				tmp_data = array[j];
 				pos = j;
 			}
 		}
-		if (array[i] != temp)
+		if (array[i] != tmp_data)
 		{
 			array[pos] = array[i];
-			array[i] = temp;
+			array[i] = tmp_data;
 			print_array(array, size);
 		}
 	}

@@ -26,12 +26,12 @@ void copy(int *src, int *dst, int size)
  * but they must already be sorted before hand
  * @array: first set of data
  * @buff: second set of data
- * @minL: lower range of first set of data
- * @maxL: upper range of first set of data
- * @minR: lower range of second set of data
- * @maxR: upper range of second set of data
+ * @minL: the lower range of first set of data
+ * @minR: the lower range of second set of data
+ * @maxR: the upper range of second set of data
+ * @maxL: the upper range of first set of data
  *
- * Return: No Return
+ * Return: Nothing
  */
 
 void merge(int *array, int *buff, int minL, int maxL, int minR, int maxR)
@@ -87,13 +87,13 @@ void printcheck(int *array, int r1, int r2)
  */
 void split(int *array, int *buff, int min, int max, int size)
 {
-	int mid, tmax, minL, maxL, minR, maxR;
+	int mid, Amax, minL, maxL, minR, maxR;
 
 	if ((max - min) <= 0)
 		return;
 
 	mid = (max + min + 1) / 2;
-	tmax = max;
+	Amax = max;
 	max = mid - 1;
 
 	minL = min;
@@ -102,7 +102,7 @@ void split(int *array, int *buff, int min, int max, int size)
 	split(array, buff, min, max, size);
 
 	min = mid;
-	max = tmax;
+	max = Amax;
 
 	minR = min;
 	maxR = max;
@@ -134,18 +134,18 @@ void split(int *array, int *buff, int min, int max, int size)
  */
 void merge_sort(int *array, size_t size)
 {
-	int *buff;
+	int *tmp;
 
 	if (size < 2)
 		return;
 
-	buff = malloc(sizeof(int) * size);
-	if (buff == NULL)
+	tmp = malloc(sizeof(int) * size);
+	if (tmp == NULL)
 		return;
 
-	copy(array, buff, size);
+	copy(array, tmp, size);
 
-	split(array, buff, 0, size - 1, size);
+	split(array, tmp, 0, size - 1, size);
 
-	free(buff);
+	free(tmp);
 }

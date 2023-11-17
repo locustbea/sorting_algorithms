@@ -1,13 +1,13 @@
 #include "sort.h"
 
 /**
- * quick_sort- sorts an array of integer
+ * quick_sort- sorts the array of an integer
  *
- * Description: This function sorts an array of integer using
- * quick sort algorithm (Lomuto partition scheme)
+ * Description: This function sorts an array of integers using
+ * quick sort algorithm.
  *
- * @array: array of integer to sort
- * @size: size of array
+ * @array: array of integers to sort
+ * @size: size of the array
  * Return: nothing
  */
 void quick_sort(int *array, size_t size)
@@ -25,21 +25,21 @@ void quick_sort(int *array, size_t size)
 	}
 	if (k == size)
 		return;
-	helper(array, size, array, size);
+	finder(array, size, array, size);
 }
 
 /**
- * helper - finds the correct position of pivot in an array of integer
+ * finder - finds the correct position of pivot in an array of integer
  *
- * @partition: partition of array
+ * @partial: partial of array
  * @array: array of integer to sort
- * @size: size of the partition
+ * @size: size of the partial
  * @orig_size: original size of the array to sort
  * Return: nothing
  */
-void helper(int *partition, size_t size, int *array, size_t orig_size)
+void finder(int *partial, size_t size, int *array, size_t orig_size)
 {
-	int pivot, temp;
+	int pivot, tmp_data;
 	size_t i, j, k;
 
 	i = 0;
@@ -47,21 +47,21 @@ void helper(int *partition, size_t size, int *array, size_t orig_size)
 	k = 0;
 	if (size <= 1 || orig_size <= 1)
 		return;
-	pivot = partition[size - 1];
+	pivot = partial[size - 1];
 	while (k <= size - 1)
 	{
-		if (partition[i] <= pivot && i < size - 1)
+		if (partial[i] <= pivot && i < size - 1)
 			i++;
 		else
 		{
 			j = i;
-			while (partition[j] > pivot)
+			while (partial[j] > pivot)
 				j++;
 			if (i != size - 1)
 			{
-				temp = partition[i];
-				partition[i] = partition[j];
-				partition[j] = temp;
+				tmp_data = partial[i];
+				partial[i] = partial[j];
+				partial[j] = tmp_data;
 				print_array(array, orig_size);
 			}
 			if (j == size - 1)
@@ -69,7 +69,7 @@ void helper(int *partition, size_t size, int *array, size_t orig_size)
 		}
 		k = i;
 	}
-	helper(partition, i, array, orig_size);
-	partition += (i + 1);
-	helper(partition, size - (i + 1), array, orig_size);
+	finder(partial, i, array, orig_size);
+	partial += (i + 1);
+	finder(partial, size - (i + 1), array, orig_size);
 }
