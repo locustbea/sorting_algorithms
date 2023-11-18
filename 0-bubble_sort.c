@@ -2,35 +2,37 @@
 #include <stdio.h>
 
 /**
- * bubble_sort - sorts an array of integers in decending order
+ * bubble_sort - The implementation of bubble sort algorithm
+ * @array: array of integers
+ * @size: The size of the array of integers
  *
- * @array: The array of integer
- * @size: The size of the array
- *
- * Return: void
+ * Return: nothing
  */
 void bubble_sort(int *array, size_t size)
 {
+	size_t i, j, tmp_data, c_data, p_data;
 
-	size_t i;
-	int tmp, sorted;
-
-	if (!array || size == 0)
+	c_data = 0;
+	p_data = 0;
+	if (array == NULL)
 		return;
-
-	do {
-		sorted = 1;
-		for (i = 0; i < size - 1; i++)
+	if (size <= 1)
+		return;
+	while (p_data < size)
+	{
+		for (i = 1, j = 0; i < size; i++, j++)
 		{
-			if (array[i] > array[i + 1])
+			if (array[j] > array[i])
 			{
-				sorted = 0;
-				tmp = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = tmp;
+				tmp_data = array[i];
+				array[i] = array[j];
+				array[j] = tmp_data;
+				c_data++;
 				print_array(array, size);
 			}
 		}
-
-	} while (sorted == 0);
+		p_data++;
+		if (c_data == 0)
+			return;
+	}
 }

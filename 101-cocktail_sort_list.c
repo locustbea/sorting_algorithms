@@ -6,58 +6,58 @@
  * @node: node base to change
  * @list: double link list head
  *
- * Return: No Return
+ * Return: Nothing
  */
 void _swap(listint_t **node, listint_t **list)
 
 {
-	listint_t *tmp = *node, *tmp2, *tmp3;
+	listint_t *tmp_data = *node, *tmp_data2, *tmp_data3;
 
 
 	if (!(*node)->prev)
 		*list = (*node)->next;
 
-	tmp = tmp3 = *node;
-	tmp2 = tmp->next;
+	tmp_data = tmp_data3 = *node;
+	tmp_data2 = tmp_data->next;
 
-	tmp->next = tmp2->next;
-	tmp3 = tmp->prev;
-	tmp->prev = tmp2;
-	tmp2->next = tmp;
-	tmp2->prev = tmp3;
+	tmp_data->next = tmp_data2->next;
+	tmp_data3 = tmp_data->prev;
+	tmp_data->prev = tmp_data2;
+	tmp_data2->next = tmp_data;
+	tmp_data2->prev = tmp_data3;
 
-	if (tmp2->prev)
-		tmp2->prev->next = tmp2;
+	if (tmp_data2->prev)
+		tmp_data2->prev->next = tmp_data2;
 
 
-	if (tmp->next)
-		tmp->next->prev = tmp;
+	if (tmp_data->next)
+		tmp_data->next->prev = tmp_data;
 
-	*node = tmp2;
+	*node = tmp_data2;
 
 }
 /**
  * cocktail_sort_list - function that sorts a doubly linked list
- * of integers in ascending order using the Cocktail shaker sort algorithm
+ * of the integers in ascending order using the Cocktail shaker sort algorithm
  *
- * @list: head of list to be sortered (Double Linked List)
+ * @list: head of Double Linked list to be sorted
  *
- * Return: No Return
+ * Return: Nothing
  */
 void cocktail_sort_list(listint_t **list)
 
 {
 	listint_t *head, *aux;
-	int c = 0, n = -1, m = -1;
+	int count = 0, n = -1, m_data = -1;
 
 	if (!list || !(*list) || (!((*list)->prev) && !((*list)->next)))
 		return;
 
 	head = *list;
-	while (m >= n)
+	while (m_data >= n)
 	{
 		n++;
-		while (head->next && c != m)
+		while (head->next && count != m_data)
 		{
 			if (head->n > head->next->n)
 			{
@@ -67,14 +67,14 @@ void cocktail_sort_list(listint_t **list)
 			       head = aux;
 			}
 
-			c++;
+			count++;
 			head = head->next;
 		}
 
 		if (n == 0)
-			m = c;
-		m--;
-		while (head->prev && c >= n)
+			m_data = count;
+		m_data--;
+		while (head->prev && count >= n)
 		{
 			if (head->n < head->prev->n)
 			{
@@ -83,7 +83,7 @@ void cocktail_sort_list(listint_t **list)
 				print_list(*list);
 				head = aux->next;
 			}
-			c--;
+			count--;
 			head = head->prev;
 		}
 	}
